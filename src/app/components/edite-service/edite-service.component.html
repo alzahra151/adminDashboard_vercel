@@ -5,21 +5,14 @@
                 <div class="p-3 bg-teal-500">
                     <h1>Add Service</h1>
                 </div>
-                <!-- <div class="card flex justify-content-center">
-                <span class="p-float-label">
-                    <input pInputText id="username" />
-                    <label htmlFor="username">Username</label>
-                </span>
-            </div> -->
+
                 <div class="flex items-center border-b border-teal-500">
                     <input formControlName="Name" pInputText
                         [ngClass]="Name?.errors?.['required']?'ng-invalid ng-dirty':''"
                         [ngClass]="serviceForm?.invalid?'ng-invalid':''"
                         class="appearance-none  w-full text-gray-700  py-1 px-2  focus:border-none hover:border-none focus:border-none"
                         type="text" placeholder="Add Service Title" aria-label="Full name">
-                    <!-- <p-message severity="error" text="Numbers not allowed"
-                    [@errorState]="serviceForm.dirty && !serviceForm.valid ? 'show' : 'hide'">
-                </p-message> -->
+
                 </div>
                 <div [hidden]="Name?.untouched || Name?.valid">
                     <span class="text-red-600 mx-2" *ngIf="Name?.errors?.['required']">Service Title is Required
