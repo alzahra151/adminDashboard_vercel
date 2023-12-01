@@ -1,0 +1,14 @@
+<div class="flex justify-start">
+    <p-button (click)="ApproveToAll()" label="Approve All"
+        styleClass="p-button-raised p-button-text p-button-success"></p-button>
+</div>
+<app-offer-details></app-offer-details>
+<!-- <app-comment-form [reqID]="reqID"></app-comment-form> -->
+<div class="flex justify-center">
+    <p-button (click)="ApproveToSales()" label="Approve Sales"
+        styleClass="p-button-raised p-button-text p-button-success"></p-button>
+    <p-button (click)="ApproveToRepresent()" label="Approve Reprsentative"
+        styleClass="p-button-raised p-button-text p-button-info"></p-button>
+    <p-button (click)="rejectReq()" label="Reject"
+        styleClass="p-button-raised p-button-text p-button-danger"></p-button>
+</div>

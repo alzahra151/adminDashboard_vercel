@@ -1,0 +1,86 @@
+<p-paginator [pageLinkSize]="Requestes?.totalPages" [rows]="Requestes?.limit" [totalRecords]="Requestes?.count"
+    [first]="1" (onPageChange)="onPageChange($event)" dir="ltr">
+</p-paginator>
+<div class="content p-4 sm:mr-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+        <div>
+            <ul class="">
+                <li><i class="pi pi-circle-fill" style="color:rgb(179, 219, 254);"></i>New</li>
+                <li><i class="pi pi-circle-fill " style="color:rgb(208, 237, 199) ;"></i>Opened</li>
+                <li><i class="pi pi-circle-fill " style="color: rgb(241, 213, 213);"></i>Rejected</li>
+                <li><i class="bi bi-check2-circle text-green-800" style="font-size: 1.2rem;"></i>Accepted</li>
+            </ul>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4 mt-8 " dir="rtl">
+            <div *ngFor="let offer of Requestes?.requests" dir="rtl"
+                [ngClass]="offer.IsOpen?offer.Rejected?'bg-red-50' :'bg-green-50':'bg-blue-50'"
+                class=" w-full max-w-lg p-3  bg-blue-50 border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex items-center justify-between mb-4">
+                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">كود
+                        {{offer.Code}}
+                    </h5>
+                    <a [routerLink]="['/home/offerDetails',offer._id]"
+                        class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                        <button
+                            class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-black text-yellow-500">
+                            <span
+                                class="relative px-2.5 py-1 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md ">
+                                <i class="bi bi-info-circle text-purple-600 hover:text-white m-2"></i>التفاصيل
+                            </span>
+                        </button>
+                    </a>
+                </div>
+                <div class="flow-root">
+                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li class="py-3 sm:py-4">
+                            <div class="flex items-center space-x-4">
+
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+
+                                    </p>
+                                    <div class="flex grid grid-cols-3">
+                                        <div class="col-span-1 text-sm text-gray-500 truncate dark:text-gray-400">اسم
+                                            العميل
+                                        </div>
+                                        <div class="col-span-2 text-base font-semibold text-gray-900 dark:text-white"> :
+                                            {{offer.Name }}</div>
+                                    </div>
+                                    <div class="flex grid grid-cols-3">
+                                        <div class="col-span-1 text-sm text-gray-500 truncate dark:text-gray-400">
+                                            المندوب
+                                        </div>
+                                        <div class="col-span-2  text-base font-semibold text-gray-900 dark:text-white">
+                                            :
+                                            {{offer?.ReprsentativeID?.FullName}}</div>
+
+                                    </div>
+
+                                </div>
+                                <div class=" items-center text-base font-semibold text-gray-900 dark:text-white">
+                                    اجمالي عرض السعر:<div></div> {{offer.PriceOffer.TotalPrice | currency: 'EGP'}}
+                                </div>
+
+
+                            </div>
+
+                        </li>
+
+                    </ul>
+                    <div class="flex">
+                        <div class="flex-auto w-64">تاريخ العرض :{{offer.createdAt | date:'short'}}</div>
+                        <i *ngIf="offer?.ApproveToSalesManger || offer?.ApproveToReprsentative"
+                            class="bi bi-check2-circle text-green-800" style="font-size: 1.5rem;"></i>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<p-paginator [pageLinkSize]="Requestes?.totalPages" [rows]="Requestes?.limit" [totalRecords]="Requestes?.count"
+    [first]="1" (onPageChange)="onPageChange($event)" dir="ltr">
+</p-paginator>

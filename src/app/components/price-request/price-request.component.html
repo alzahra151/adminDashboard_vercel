@@ -1,0 +1,423 @@
+<!-- <app-req-card [reqData]="Requestes"></app-req-card> -->
+<!-- <ng-container *ngIf="userRole==='secretarial'">
+    <div class="flex items-center justify-center h-20 mb-4 mt-8 rounded bg-black dark:bg-gray-800">
+        <p class="text-2xl text-yellow-500 dark:text-gray-500">
+
+            عروض طلبات الاسعار
+        </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4" dir="rtl">
+        <div *ngFor="let req of Requestes ; let i = index"
+            [ngClass]="req.Accept ?'bg-green-100':req.Pending  ? 'bg-gray-200':'bg-red-50'"
+            class=" p-2 pt-2   border border-gray-150 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="grid grid-cols-5 ">
+                <span
+                    class=" col-span-3 inline-flex items-center justify-center justify-self-start  w-[2.5rem] h-[2.5rem] p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">كود{{req.Code}}
+
+                </span>
+
+                <div class="col-span-2 flex ps-2">
+
+                    <p-button [routerLink]="['AddOffer',req._id]" (click)="SelectedReq=req" label="اضافةعرض سعر"
+                        [style]="{
+                    padding: '2px',    
+                }">
+                        <span class="icon ">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="w-6 h-6">
+                                <path
+                                    d="M10.464 8.746c.227-.18.497-.311.786-.394v2.795a2.252 2.252 0 01-.786-.393c-.394-.313-.546-.681-.546-1.004 0-.323.152-.691.546-1.004zM12.75 15.662v-2.824c.347.085.664.228.921.421.427.32.579.686.579.991 0 .305-.152.671-.579.991a2.534 2.534 0 01-.921.42z" />
+                                <path fill-rule="evenodd"
+                                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v.816a3.836 3.836 0 00-1.72.756c-.712.566-1.112 1.35-1.112 2.178 0 .829.4 1.612 1.113 2.178.502.4 1.102.647 1.719.756v2.978a2.536 2.536 0 01-.921-.421l-.879-.66a.75.75 0 00-.9 1.2l.879.66c.533.4 1.169.645 1.821.75V18a.75.75 0 001.5 0v-.81a4.124 4.124 0 001.821-.749c.745-.559 1.179-1.344 1.179-2.191 0-.847-.434-1.632-1.179-2.191a4.122 4.122 0 00-1.821-.75V8.354c.29.082.559.213.786.393l.415.33a.75.75 0 00.933-1.175l-.415-.33a3.836 3.836 0 00-1.719-.755V6z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </p-button>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 flex flex-nowrap mt-5">
+                <div class="col-span-2 md:col-span-2 lg:col-span-1 ">
+                    <div class="flex items-center">
+
+                        <span [ngClass]="req.Accept ?'bg-green-100':req.Pending  ? 'bg-gray-200':'bg-red-70'"
+                            class="px-2 py-2  font-bold text-gray-700">الطلب</span>
+                        <hr class="flex-grow border-yellow-500 border-1 mx-2">
+                    </div>
+                    <div class="border-r-4 border-gray-900 px-2">
+                        <div>اسم النشاط : <span class="mx-2">{{req.ActivityName}}</span></div>
+                        <div>طبيعة النشاط : {{req.ActivityNature}}</div>
+                        <div>طبيعة النشاط : {{req.activityLocation}}</div>
+                        <div>الدولة : <span class="mx-2">{{req.Country}}</span></div>
+                        <div>المحافظة : <span class="mx-2">{{req.Governorate}}</span></div>
+                        <div>المدينة : <span class="mx-2">{{req.City}}</span></div>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="col-span-2 md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center">
+
+                        <span [ngClass]="req.Accept ?'bg-green-100':req.Pending  ? 'bg-gray-200':'bg-red-70'"
+                            class="px-2 py-2  font-bold text-gray-700">بيانات العميل</span>
+                        <hr class="flex-grow border-yellow-500 border-1 mx-2">
+                    </div>
+                    <div class="border-r-4 border-gray-900 px-2">
+                        <div> اسم صاحب النشاط : {{req.Name}}</div>
+                        <div>رقم الجوال : <span>{{req.Mobile}}</span></div>
+                        <div>رقم الهاتف : <span>{{req.Phone}}</span></div>
+                        <div>البريد الالكتروني : <span>{{req.Email}}</span></div>
+                        <div>العنوان : <span>{{req.Location}}</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <hr class="flex-grow border-yellow-500 border-8 mx-2 mt-3">
+            </div>
+            <div class="-mt-2 border border-yellow-500">
+
+                <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 mb-4 border-yellow-500" dir="rtl">
+
+                    <div *ngFor="let service of req.Services"
+                        class=" p-2 pt-2  text-black  mx-3  dark:bg-gray-800 dark:border-gray-700">
+
+                        <h5 class="col-span-5 text-center  ps-2">الخدمة</h5>
+                        <div class="grid grid-cols-5 ">
+
+                            <h5 class="col-span-5 flex ps-2 bg-gray-100 text-gray-800">{{service.Service.Name}}</h5>
+                            <span>
+                                <h5 class=" col-span-1 text-center flex ps-2"> الاجهزة:</h5>
+                            </span>
+                            <span class="col-span-4 ps-2 flex flex-wrap">
+                                <span *ngFor="let device of service.Devices"
+                                    class=" m-2 bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500">{{device}}</span>
+
+                            </span>
+                        </div>
+                        <hr class="flex-grow border-black border-1 mx-2 mt-8 ">
+                        <span>ملاحظات : </span><span class=" ">{{service.Notes}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-2 bg-black text-white">المبلغ المستحق قبل التركيب : {{req.InitialAmountOfMoney | currency
+                :'EGP'}}
+            </div>
+
+            <div>
+                <app-comment-form [reqID]="req._id"></app-comment-form>
+            </div>
+            <div class="mt-8">
+                <div>المندوب : <span>{{req.ReprsentativeID.FullName}}</span></div>
+                <div>التاريخ : <span dir="ltr">{{req.createdAt}}</span></div>
+                <div class="flex justify-center mt-3">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</ng-container> -->
+<!-- end price Requestes -->
+
+<!-- price offers  -->
+<!-- <div class="flex items-center justify-center h-20 mb-4 rounded bg-black dark:bg-gray-800">
+    <p class="text-2xl text-yellow-500 dark:text-gray-500">
+        عروض الاسعار
+    </p>
+</div> -->
+
+<!-- price offers table  -->
+<!-- <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" dir="rtl">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 " dir="rtl">
+            <tr class="text-center p-3">
+                <th class="p-2">كود الطلب </th>
+                <th class="p-2">مقدم الطلب </th>
+                <th class="p-2">التاريخ</th>
+                <th class="p-2">اجمالي عرض السعر </th>
+                <th class="p-2"> بيانات العرض </th>
+                <th class="p-2">تعديل</th>
+                <th class="p-2">حذف </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let offer of PriceOffers"
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-right" dir="rtl">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{offer.PriceOfferReq.Code}}
+                </th>
+                <td class="px-6 py-4">
+                    {{offer.PriceOfferReq.ReprsentativeID.FullName}}
+                </td>
+                <td class="px-6 py-4">
+                    {{offer.PriceOfferReq.createdAt}}
+                </td>
+                <td class="px-6 py-4">
+                    {{offer.TotalPrice | currency: 'EGP'}}
+                </td>
+                <td>
+                    <button (click)="offerInfo(offer)"
+                        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                        <span
+                            class="relative px-2.5 py-1 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            <i class="bi bi-info-circle text-purple-600 hover:text-white"></i>
+                        </span>
+                    </button>
+                </td>
+                <td>
+                    <button
+                        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+                        <span
+                            class="relative px-2.5 py-1 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            <i class="bi bi-pencil text-blue-500 hover:text-white"></i>
+                        </span>
+                    </button>
+                </td>
+                <td>
+                    <button (click)="openConfirmDeleteDialog(offer)"
+                        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg bg-red-400">
+                        <span
+                            class="relative px-2.5 py-1 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md hover:bg-opacity-0">
+                            <i class="bi bi-trash3 text-orange-400 hover:text-white"></i>
+                        </span>
+                    </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div> -->
+
+<!-- offer card  -->
+<!-- <ng-container *ngIf="userRole==='Manager'">
+    <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4 mt-8 " dir="rtl">
+        <div *ngFor="let offer of PriceOffers" dir="rtl" [ngClass]="offer.IsOpen?'bg-green-50':'bg-blue-50' "
+            class=" w-full max-w-md p-4 bg-blue-50 border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex items-center justify-between mb-4">
+                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">كود
+                    {{offer.PriceOfferReq?.Code}}
+                </h5>
+                <a [routerLink]="['offerDetails',offer._id]"
+                    class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                    <button
+                        class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-black text-yellow-500">
+                        <span
+                            class="relative px-2.5 py-1 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md ">
+                            <i class="bi bi-info-circle text-purple-600 hover:text-white m-2"></i>التفاصيل
+                        </span>
+                    </button>
+                </a>
+            </div>
+            <div class="flow-root">
+                <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+
+                                </p>
+                                <div class="flex grid grid-cols-3">
+                                    <div class="col-span-1 text-sm text-gray-500 truncate dark:text-gray-400">اسم العميل
+                                    </div>
+                                    <div class="col-span-2 text-base font-semibold text-gray-900 dark:text-white"> :
+                                        {{offer.PriceOfferReq?.Name }}</div>
+                                </div>
+                                <div class="flex grid grid-cols-3">
+                                    <div class="col-span-1 text-sm text-gray-500 truncate dark:text-gray-400">المندوب
+                                    </div>
+                                    <div class="col-span-2  text-base font-semibold text-gray-900 dark:text-white"> :
+                                        {{offer.PriceOfferReq?.ReprsentativeID.FullName}}</div>
+                                </div>
+
+                            </div>
+                            <div class=" items-center text-base font-semibold text-gray-900 dark:text-white">
+                                اجمالي عرض السعر:<div></div> {{offer.TotalPrice | currency: 'EGP'}}
+                            </div>
+
+
+                        </div>
+
+                    </li>
+
+                </ul>
+                <div class="flex">
+                    <div class="flex-auto w-64">تاريخ العرض :{{offer.PriceOfferReq?.createdAt | date:'short'}}</div>
+                    <i *ngIf="offer?.Approve" class="bi bi-check2-circle text-green-800"></i>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</ng-container> -->
+<!-- Main modal  for add price offer-->
+
+
+<!-- modal form for edit price offer 
+<p-dialog header="عرض طلي السعر " [(visible)]="visibleEditeForm" [style]="{width:'50vw'}" dir="rtl">
+    <!-- <p-messages></p-messages> -->
+<!-- Modal header -->
+<!-- <div class=" justify-between items-center pb-4 mb-4 bg-yellow-400 rounded-t border-b sm:mb-5 dark:border-gray-600">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">كود الطلب
+            <span
+                class=" col-span-3 inline-flex items-center justify-center justify-self-start  w-[2.5rem] h-[2.5rem] p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{{SelectedReq?.Code}}
+            </span>
+        </h3>
+    </div> -->
+<!-- Modal body -->
+
+<!-- <form [formGroup]="PriceOfferForm">
+        <div class="grid gap-4 mb-4 sm:grid-cols-2">
+
+            <div formArrayName="PriceOffer" class=" grid grid-clos-2">
+                <div class=" col-span-2 lg:col-span-1  " *ngFor="let item of PriceOffer?.controls; let i = index"
+                    [formGroupName]="i">
+                    <div class=" flex ">
+                        <label> الخدمة: </label>
+                        <span class="mx-2">{{EditedOfferReq?.PriceOffer[i].Service.Name}}</span>
+                    </div>
+                    <div>
+                        <label>عرض السعر: </label>
+                        <input type="text" formControlName="ServicePriceOffer" id="PriceOffer{{i+1}}"
+                            placeholder="00.000.0" name="PriceOffer{{i+1}}"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="sm:col-span-2">
+                <hr>
+                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">اجمالي
+                    عرض السعر </label>
+                <input #TotalPrice id="description" rows="4" [value]="EditedOfferReq?.TotalPrice"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="00.000.0" name="TotalPrice">
+            </div>
+        </div>
+        <button pButton (click)="updaePriceOffer(PriceOfferForm.value.PriceOffer,TotalPrice.value)" type="submit"
+            class="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+            <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            اضافة عرض السعر
+        </button>
+    </form> -->
+<!-- </p-dialog> --> -->
+<!-- end edit modal -->
+
+<!-- confirm delete modal  -->
+<!-- <p-toast></p-toast>
+<p-confirmDialog #cd [style]="{width: '50vw'}" dir="rtl">
+    <ng-template pTemplate="header">
+        <h3>حذف عرض السعر</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button"
+            class=" px-4 py-3 md:py-2 bg-red-200 text-red-700 rounded-lg font-semibold text-sm md:ml-2 md:order-2"
+            icon="pi pi-times" label="No" (click)="cd.accept()">تاكيد الحذف</button>
+        <button type="button"
+            class="px-4 py-3 md:py-2 bg-gray-200 rounded-lg font-semibold text-sm mt-4 md:mt-0 md:order-1"
+            icon="pi pi-check" label="Yes" (click)="cd.reject()">اغلاق</button>
+    </ng-template>
+</p-confirmDialog> -->
+
+<!-- offer information card -->
+<!-- <p-dialog header="عرض طلي السعر " [(visible)]="visibleOfferInfo" [style]="{height: '100vh'}" dir="rtl">
+    <div [ngClass]="SelectedOfferInfo?.PriceOfferReq.Accept ?'bg-green-100':SelectedOfferInfo?.PriceOfferReq.Pending  ? 'bg-gray-200':'bg-red-50'"
+        class=" p-2 pt-2   border border-gray-150 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="grid grid-cols-5 ">
+            <span
+                class=" col-span-3 inline-flex items-center justify-center justify-self-start  w-[2.5rem] h-[2.5rem] p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">كود{{SelectedOfferInfo?.PriceOfferReq.Code}}
+            </span>
+        </div>
+        <div class="grid grid-cols-2 flex flex-nowrap mt-5">
+            <div class="col-span-2 md:col-span-2 lg:col-span-1 ">
+                <div class="flex items-center">
+
+                    <span
+                        [ngClass]="SelectedOfferInfo?.PriceOfferReq.Accept ?'bg-green-100':SelectedOfferInfo?.PriceOfferReq.Pending  ? 'bg-gray-200':'bg-red-70'"
+                        class="px-2 py-2  font-bold text-gray-700">الطلب</span>
+                    <hr class="flex-grow border-yellow-500 border-1 mx-2">
+                </div>
+                <div class="border-r-4 border-gray-900 px-2">
+                    <div>اسم النشاط : <span class="mx-2">{{SelectedOfferInfo?.PriceOfferReq.ActivityName}}</span></div>
+                    <div>طبيعة النشاط : {{SelectedOfferInfo?.PriceOfferReq.ActivityNature}}</div>
+                    <div>طبيعة النشاط : {{SelectedOfferInfo?.PriceOfferReq.activityLocation}}</div>
+                    <div>الدولة : <span class="mx-2">{{SelectedOfferInfo?.PriceOfferReq.Country}}</span></div>
+                    <div>المحافظة : <span class="mx-2">{{SelectedOfferInfo?.PriceOfferReq.Governorate}}</span></div>
+                    <div>المدينة : <span class="mx-2">{{SelectedOfferInfo?.PriceOfferReq.City}}</span></div>
+                    <span></span>
+                </div>
+            </div>
+            <div class="col-span-2 md:col-span-2 lg:col-span-1">
+                <div class="flex items-center">
+
+                    <span
+                        [ngClass]="SelectedOfferInfo?.Accept ?'bg-green-100':SelectedOfferInfo?.Pending  ? 'bg-gray-200':'bg-red-70'"
+                        class="px-2 py-2  font-bold text-gray-700">بيانات العميل</span>
+                    <hr class="flex-grow border-yellow-500 border-1 mx-2">
+                </div>
+                <div class="border-r-4 border-gray-900 px-2">
+                    <div> اسم صاحب النشاط : {{SelectedOfferInfo?.PriceOfferReq.Name}}</div>
+                    <div>رقم الجوال : <span>{{SelectedOfferInfo?.PriceOfferReq.Mobile}}</span></div>
+                    <div>رقم الهاتف : <span>{{SelectedOfferInfo?.PriceOfferReq.Phone}}</span></div>
+                    <div>البريد الالكتروني : <span>{{SelectedOfferInfo?.PriceOfferReq.Email}}</span></div>
+                    <div>العنوان : <span>{{SelectedOfferInfo?.PriceOfferReq.Location}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center">
+            <hr class="flex-grow border-yellow-500 border-8 mx-2 mt-3">
+        </div>
+        <div class="-mt-2">
+
+            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 mb-4" dir="rtl">
+
+                <div *ngFor="let service of SelectedOfferInfo?.PriceOffer ,let i=index"
+                    class=" p-2 pt-2 bg-white text-black border mx-3 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+                    <h5 class="col-span-5 text-center  ps-2">الخدمة</h5>
+                    <div class="grid grid-cols-5 ">
+
+                        <h5 class="col-span-5 flex ps-2 bg-gray-100 text-gray-800">{{service.Service.Name}}</h5>
+                        <span>
+                            <h5 class=" col-span-1 text-center flex ps-2"> الاجهزة:</h5>
+                        </span>
+                        <span class="col-span-4 ps-2 flex flex-wrap">
+                            <span *ngFor="let device of SelectedOfferInfo?.PriceOfferReq.Services[i].Devices"
+                                class=" m-2 bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500">{{device}}</span>
+
+                        </span>
+                        <span class="col-span grow">
+                            <h5 class="col-span  text-center flex ps-2"> عرض السعر:</h5>
+                        </span>
+                        <span class="col-span ps-2">
+                            <span
+                                class=" m-2 bg-black text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500">{{service.ServicePriceOffer}}</span>
+
+                        </span>
+                    </div>
+
+
+                </div>
+                <hr class="flex-grow border-yellow-500 border-1 mx-2 mt-8 ">
+                <span> اجمالي عرض السعر: </span><span class=" ">{{SelectedOfferInfo?.TotalPrice}}</span>
+            </div>
+        </div>
+
+        <div class="mt-8">
+            <div>المندوب : <span>{{SelectedOfferInfo?.PriceOfferReq.ReprsentativeID.FullName}}</span></div>
+            <div>التاريخ : <span dir="ltr">{{SelectedOfferInfo?.createdAt}}</span></div>
+            <div class="flex justify-center mt-3">
+                <button type="button"
+                    class=" mx-5 text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">قبول</button>
+
+
+                
+            </div>
+        </div>
+
+    </div>
+</p-dialog> -->

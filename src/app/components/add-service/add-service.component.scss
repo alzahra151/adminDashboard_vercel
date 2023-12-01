@@ -1,0 +1,20 @@
+.form{
+    width: 75%;
+}
+.input:focus{
+    border: none;
+    border-color: unset;
+    box-shadow: unset
+}
+@media screen and (max-width:1040px) {
+ .form{
+    width: 100%;
+}   
+}
+
+.input:hover{
+    box-shadow: unset
+}
+.input{
+    border-radius: 0%;
+}

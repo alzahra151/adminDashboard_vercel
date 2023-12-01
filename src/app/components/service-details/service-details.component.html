@@ -1,0 +1,57 @@
+<div class="content p-4 sm:mr-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+        <div class="card m-auto m-2 border border-gray-400">
+            <div class="bg-teal-200 p-3 rounded">
+                <h2>{{service?.Name }}</h2>
+            </div>
+            <div class="p-5 ">
+                <h2 class="bg-blue-100 p-2">Detais</h2>
+                <ul *ngFor="let detail of service?.Details">
+                    <li class=" mx-2 flex"><svg
+                            class="w-3.5 h-3.5 mr-2 text-green-500 dark:text-green-400 flex-shrink-0 mt-1.5"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                        </svg>{{detail}}</li>
+                </ul>
+            </div>
+            <div class="p-5">
+                <p-table [value]="service?.Devices" styleClass="p-datatable-gridlines"
+                    [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template pTemplate="caption">
+                        <i style="color: brown;" class="pi pi-desktop"></i> Devices </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-device>
+                        <tr>
+                            <td>{{device.Title}}</td>
+                            <td>{{device.Price | currency:"EGP"}}</td>
+                        </tr>
+
+                    </ng-template>
+                    <!-- <ng-template pTemplate="summary"> Footer </ng-template> -->
+                </p-table>
+            </div>
+            <!-- <div class="p-5">
+                <div class="flex mb-2">
+                    <img class="w-16" src="../../../assets/4.png" />
+                    <h2 class="mt-2">Maintenance And Updates</h2>
+                </div>
+                <div class="flex w-full">
+                    <div class="border border-gray-300 p-2 w-full">
+                        {{service?.Maintenance?.description }}
+                    </div>
+                    <div class="border border-gray-300 p-2 w-full">
+                        {{service?.Maintenance?.price }}
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+    </div>
+</div>

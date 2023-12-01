@@ -1,0 +1,41 @@
+.icon,
+.text {
+  vertical-align: middle;
+  display: inline-block;
+}
+.currentColor{
+    color:white;
+}
+ 
+.p-dialog .p-dialog-content{
+ padding:  0 .5rem 1rem .5rem!important;
+}
+@media screen and (max-width:640px) {
+  .p-dialog .p-dialog-content{
+    padding: 0rem !important;
+  }
+}
+.ui-dialog .ui-dialog-content {
+  margin: 0 !important;
+}
+.p-dialog .p-dialog-content{
+  padding-left: .5rem !important;
+  padding-right:.5rem !important ;
+}
+// .disable-scroll .ui-dialog-content {
+//   overflow: hidden !important;
+// }
+.p-dialog .p-dialog-content{
+  padding:  0 .5rem 1rem .5rem!important;
+ }
+ /* styles for small devices */
+@media screen and (max-width: 767px) {
+  p-dialog {
+    width: 100%;
+    max-width: none;
+    display: inline-block;
+  }
+  .p-dialog-resizable{
+    width:100%
+  }
+}
