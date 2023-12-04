@@ -20,18 +20,23 @@ import { ServicesComponent } from './components/services/services.component';
 import { ServiceDetailsComponent } from './components/service-details/service-details.component';
 import { EditeUserComponent } from './components/edite-user/edite-user.component';
 import { EditeServiceComponent } from './components/edite-service/edite-service.component';
+import { customerGuard } from './guards/customer.guard';
 
 const routes: Routes = [
-  // { path: "", component: LoginComponent, },
-  // { path: "Offer/:id", component: OfferPDFComponent },
-  // {
-  //   path: "home", component: MainLayoutComponent,
-  //   children: [
 
-  //     { path: "", component: HomeComponent }
-  //   ]
-  // },
   { path: "", component: LoginComponent },
+
+  {
+    path: 'customer-service',
+    canActivate: [customerGuard],
+    loadComponent: () =>
+      import('./customerserviceComponents/accepted-reqs/accepted-reqs.component').then((m) => m.AcceptedReqsComponent),
+  },
+  {
+    path: 'customer-service/req-details/:id',
+    loadComponent: () =>
+      import('./customerserviceComponents/req-details/req-details.component').then((m) => m.ReqDetailsComponent),
+  },
   {
     path: "home", component: MainLayoutComponent, canActivate: [AuthGuard],
     children: [

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<div class=" m-0 p-0  ">
+    <div class="flex m-0 p-0 flex-nowrap grid grid-cols-6" dir="rtl">
+        <div class=" col-span-6   m-0  ">
+            <div class="flex m-0 p-0 flex-col w-full  ">
+                <div class="w-full p-0 bg-white shadow-lg">
+                    <!-- <app-navbar></app-navbar> -->
+                    <div class=" flex justify-end " dir="rtl">
+                        <a routerLink="/Elabd/home" class="flex items-center pb-3 ps-2 text-decoration-none mx-2 my-2">
+                            <span class="font-semibold fs-5 d-none d-sm-inline text-dark">Customer Service</span>
+                            <img src="../../../assets/customer.png" class="rounded-full m-2"
+                                style="width: 50px;height:50px" loading="lazy" />
+                        </a>
+
+                    </div>
+
+                </div>
+                <div class="lg:p-5 lg:m-5 sm:p-3 sm:m-3">
+                    <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4" dir="rtl">
+                        <div *ngFor="let req of requests">
+                            <div class=" p-2 pt-2 m-5  border border-gray-150 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                                [ngClass]="req.IsOpen?req.Rejected?'bg-red-50' :'bg-green-50':'bg-blue-50'">
+                                <div class="grid grid-cols-5 ">
+                                    <span
+                                        class=" col-span-3 inline-flex items-center justify-center justify-self-start  w-[2.5rem] h-[2.5rem] p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">كود{{req.Code}}
+                                    </span>
+
+
+                                </div>
+                                <div class="grid grid-cols-2 flex flex-nowrap mt-5">
+                                    <div class="col-span-2 md:col-span-2 lg:col-span-1 ">
+                                        <div class="flex items-center">
+
+                                            <span
+                                                [ngClass]="req.Accept ?'bg-green-100':req.Pending  ? 'bg-gray-200':'bg-red-70'"
+                                                class="px-2 py-2  font-bold text-gray-700">الطلب</span>
+                                            <hr class="flex-grow border-yellow-500 border-1 mx-2">
+                                        </div>
+                                        <div class="border-r-4 border-gray-900 px-2">
+                                            <div class="grid grid-cols-5">
+                                                <div class="col-span-2">اسم النشاط </div>
+                                                <div class="col-span-3">: {{req?.ActivityName}}</div>
+                                            </div>
+                                            <div class="grid grid-cols-5">
+                                                <div class="col-span-2"> طبيعة النشاط </div>
+                                                <div class="col-span-3">: {{req?.ActivityNature}}</div>
+                                            </div>
+                                            <div class="grid grid-cols-5">
+                                                <div class="col-span-2"> عنوان النشاط </div>
+                                                <div class="col-span-3">: {{req?.activityLocation}}</div>
+                                            </div>
+                                            <div class="grid grid-cols-5">
+                                                <div class="col-span-2"> الدولة</div>
+                                                <div class="col-span-3">:{{req?.Country}}</div>
+                                            </div>
+                                            <div class="grid grid-cols-5">
+                                                <div class="col-span-2"> المحافظة</div>
+                                                <div class="col-span-3">: {{req?.Governorate}}</div>
+                                            </div>
+                                            <div class="grid grid-cols-5">
+                                                <div class="col-span-2"> المدينة</div>
+                                                <div class="col-span-3">: {{req?.City}}</div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-span-2 md:col-span-2 lg:col-span-1">
+                                        <div class="flex items-center">
+
+                                            <span
+                                                [ngClass]="req?.Accept ?'bg-green-100':req?.Pending  ? 'bg-gray-200':'bg-red-70'"
+                                                class="px-2 py-2  font-bold text-gray-700"> <i class="pi pi-user mx-2"
+                                                    style="color: black"></i>بيانات
+                                                العميل </span>
+                                            <hr class="flex-grow border-yellow-500 border-1 mx-2">
+                                        </div>
+                                        <div class="border-r-4 border-gray-900 ">
+
+                                            <div class="flex">
+                                                <div class="mx-2"> <i class="pi pi-user" style="color: black"></i></div>
+                                                <div class=""> {{req?.Name}}</div>
+                                            </div>
+                                            <div class="flex">
+
+                                                <div class="mx-2"> <i class="pi   pi-mobile"
+                                                        style="color: rgb(48, 61, 241)"></i> </div>
+                                                <div class=""> {{req?.Mobile}}</div>
+                                            </div>
+                                            <div class="flex">
+                                                <div class="mx-2"> <i class="pi  pi-phone"
+                                                        style="color: rgb(0, 0, 0)"></i> </div>
+                                                <div class="">{{req?.Phone}}</div>
+                                            </div>
+                                            <div class="flex">
+                                                <div class="mx-2"> <i class="pi   pi-envelope" style="color: red"></i>
+                                                </div>
+                                                <div class="break-all ">{{req?.Email}}</div>
+                                            </div>
+                                            <div class="flex">
+                                                <div class="mx-2"> <i class="pi   pi-map-marker"
+                                                        style="color: green"></i> </div>
+                                                <div class=""> {{req?.Location}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="flex items-center">
+                                <hr class="flex-grow border-yellow-500 border-8 mx-2 mt-3">
+                            </div> -->
+                                <hr class="border-black mt-2">
+                                <div *ngIf="req.Comment" class="mt-2 text-white bg-black p-2 border border-black">
+
+                                    {{req.Comment}}
+                                </div>
+
+                                <div class="mt-8  grid grid-cols-3 ">
+                                    <div class="col-span-2 ">
+                                        <div class="flex justify-start">
+                                            <img [src]="req?.ReprsentativeID?.Image" class="rounded-full mx-3"
+                                                style="height: 50px;width:50px;">
+                                            <span class=" ">
+                                                <div>{{req.ReprsentativeID?.FullName}}</div>
+                                                <div dir="ltr">{{req.createdAt | date}}</div>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-span-1 ">
+                                        <a [routerLink]="['/customer-service/req-details',req._id]"
+                                            class="   font-medium text-blue-600 hover:underline dark:text-blue-500 justify-end">
+                                            <button
+                                                class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-black text-yellow-500">
+                                                <span
+                                                    class="relative px-2.5 py-1 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md ">
+                                                    <i
+                                                        class="bi bi-info-circle text-purple-600 hover:text-white m-2"></i>التفاصيل
+                                                </span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>

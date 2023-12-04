@@ -16,7 +16,12 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['/']); // go to login if not authenticated
       return false;
     } else {
-      return true;
+
+      if (localStorage.getItem('AdminRole') == 'Manager') {
+        return true
+      } else {
+        return false
+      }
     }
 
   }

@@ -36,10 +36,15 @@ export class LoginComponent implements OnInit {
         this.loading = true
         console.log(this.userData.AccessToken)
         localStorage.setItem('AdminToken', this.userData.AccessToken)
-        localStorage.setItem('FullName', this.userData.StoredRepresent.FullName)
-        localStorage.setItem('Image', this.userData.StoredRepresent.Image)
+        localStorage.setItem('AdminRole', this.userData.StoredRepresent.Role)
         // localStorage.setItem('userId', this.userData.result.StoredRepresent.id)
-        this.router.navigate(['/home'])
+        if (this.userData.StoredRepresent.Role == 'customerService') {
+          this.router.navigate(['/customer-service'])
+        }
+        else {
+          this.router.navigate(['/home'])
+        }
+
 
       },
       error: (err) => {
