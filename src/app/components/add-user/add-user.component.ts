@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 export class AddUserComponent {
   userData: any
   registerForm: FormGroup
-  public roles: any = ['Manager', 'secretarial'];
+  public roles: any = ['Manager', 'secretarial', 'customerService'];
   constructor(private user: UserService, private formBilder: FormBuilder, private router: Router) {
     this.registerForm = formBilder.group({
       FullName: ['', [Validators.required, Validators.pattern("^[a-zA-Z]{3,}( {1,2}[a-zA-Z]{3,}){1,}$")]],
