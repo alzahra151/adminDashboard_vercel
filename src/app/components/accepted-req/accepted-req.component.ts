@@ -12,10 +12,10 @@ export class AcceptedReqComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.getAcceptedReq()
+    this.getAcceptedReq(6, 0)
   }
-  getAcceptedReq() {
-    this.reqService.getAcceptedReq().subscribe({
+  getAcceptedReq(limit: any, page: any) {
+    this.reqService.getAcceptedReq(limit, page).subscribe({
       next: (data) => {
         this.requests = data
       },
@@ -24,5 +24,9 @@ export class AcceptedReqComponent implements OnInit {
       }
     })
   }
-
+  onPageChange(event: any) {
+    console.log(event)
+    console.log(event.page)
+    this.getAcceptedReq(event.rows, event.page)
+  }
 }

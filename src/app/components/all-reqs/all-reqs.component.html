@@ -69,8 +69,8 @@
                     </ul>
                     <div class="flex">
                         <div class="flex-auto w-64">تاريخ العرض :{{offer.createdAt | date:'short'}}</div>
-                        <i *ngIf="offer?.ApproveToSalesManger || offer?.ApproveToReprsentative"
-                            class="bi bi-check2-circle text-green-800" style="font-size: 1.5rem;"></i>
+                        <i *ngIf="offer?.Approve" class="bi bi-check2-circle text-green-800"
+                            style="font-size: 1.5rem;"></i>
                     </div>
 
 

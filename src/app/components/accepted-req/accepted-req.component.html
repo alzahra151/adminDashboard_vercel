@@ -8,11 +8,17 @@
 
 </div> -->
 <div class="content p-4 sm:mr-64">
+    <p-paginator [pageLinkSize]="requests?.totalPages" [rows]="requests?.limit" [totalRecords]="requests?.count"
+        [first]="1" (onPageChange)="onPageChange($event)" dir="ltr">
+    </p-paginator>
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
         <!-- <app-price-request></app-price-request> -->
         <!-- <router-outlet></router-outlet> -->
-        <app-req-card [reqData]="requests"></app-req-card>
+        <app-req-card [reqData]="requests?.requests"></app-req-card>
 
 
     </div>
+    <p-paginator [pageLinkSize]="requests?.totalPages" [rows]="requests?.limit" [totalRecords]="requests?.count"
+        [first]="1" (onPageChange)="onPageChange($event)" dir="ltr">
+    </p-paginator>
 </div>

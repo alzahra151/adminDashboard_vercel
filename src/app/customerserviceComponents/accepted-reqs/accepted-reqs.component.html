@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <div class=" m-0 p-0  ">
+
     <div class="flex m-0 p-0 flex-nowrap grid grid-cols-6" dir="rtl">
         <div class=" col-span-6   m-0  ">
             <div class="flex m-0 p-0 flex-col w-full  ">
@@ -15,9 +17,13 @@
                     </div>
 
                 </div>
+
                 <div class="lg:p-5 lg:m-5 sm:p-3 sm:m-3">
+                    <p-paginator [pageLinkSize]="requests?.totalPages" [rows]="requests?.limit"
+                        [totalRecords]="requests?.count" [first]="1" (onPageChange)="onPageChange($event)" dir="ltr">
+                    </p-paginator>
                     <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 mb-4" dir="rtl">
-                        <div *ngFor="let req of requests">
+                        <div *ngFor="let req of requests?.requests">
                             <div class=" p-2 pt-2 m-5  border border-gray-150 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
                                 [ngClass]="req.IsOpen?req.Rejected?'bg-red-50' :'bg-green-50':'bg-blue-50'">
                                 <div class="grid grid-cols-5 ">
@@ -149,5 +155,7 @@
         </div>
     </div>
 </div>
-
+<p-paginator [pageLinkSize]="requests?.totalPages" [rows]="requests?.limit" [totalRecords]="requests?.count" [first]="1"
+    (onPageChange)="onPageChange($event)" dir="ltr">
+</p-paginator>
 <hr>

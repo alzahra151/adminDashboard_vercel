@@ -83,7 +83,7 @@ export class ReqDetailsComponent {
         var link = document.createElement("a");
         link.href = data;
         this.pdfUrl = data
-        link.download = `${this.Request.QrCode}.pdf`;
+        link.download = `02-${this.Request.QrCode}.pdf`;
         link.dispatchEvent(
           new MouseEvent("click", {
             bubbles: true,

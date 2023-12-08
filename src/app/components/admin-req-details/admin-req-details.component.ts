@@ -38,8 +38,8 @@ export class AdminReqDetailsComponent {
       }
     })
   }
-  ApproveToSales() {
-    this.OfferService.updateReq(this.Request._id, { Rejected: false, ApproveToSalesManger: true }).subscribe({
+  ApproveReq() {
+    this.OfferService.approveReq(this.Request._id).subscribe({
       next: (data) => {
 
         // console.log(data)
@@ -50,32 +50,32 @@ export class AdminReqDetailsComponent {
       }
     })
   }
-  ApproveToRepresent() {
-    this.OfferService.updateReq(this.Request._id, { Rejected: false, ApproveToReprsentative: true }).subscribe({
-      next: (data) => {
+  // ApproveToRepresent() {
+  //   this.OfferService.updateReq(this.Request._id, { Rejected: false, ApproveToReprsentative: true }).subscribe({
+  //     next: (data) => {
 
-        // console.log(data)
-        this.router.navigate(['/home/NewRequestes'])
-      },
-      error: (err) => {
-        console.log(err)
-      }
-    })
-  }
-  ApproveToAll() {
-    this.OfferService.updateReq(this.Request._id, { Rejected: false, ApproveToSalesManger: true, ApproveToReprsentative: true }).subscribe({
-      next: (data) => {
+  //       // console.log(data)
+  //       this.router.navigate(['/home/NewRequestes'])
+  //     },
+  //     error: (err) => {
+  //       console.log(err)
+  //     }
+  //   })
+  // }
+  // ApproveToAll() {
+  //   this.OfferService.updateReq(this.Request._id, { Rejected: false, ApproveToSalesManger: true, ApproveToReprsentative: true }).subscribe({
+  //     next: (data) => {
 
-        // console.log(data)
-        this.router.navigate(['/home/NewRequestes'])
-      },
-      error: (err) => {
-        console.log(err)
-      }
-    })
-  }
+  //       // console.log(data)
+  //       this.router.navigate(['/home/NewRequestes'])
+  //     },
+  //     error: (err) => {
+  //       console.log(err)
+  //     }
+  //   })
+  // }
   rejectReq() {
-    this.OfferService.updateReq(this.Request._id, { Rejected: true, ApproveToSalesManger: false, ApproveToReprsentative: false }).subscribe({
+    this.OfferService.updateReq(this.Request._id, { Rejected: true, Approve: false }).subscribe({
       next: (data) => {
 
         // console.log(data)

@@ -28,6 +28,7 @@ export class SidBarComponent implements OnInit {
     this.ReqService.getNewReqCount().subscribe({
       next: (data) => {
         this.ReqCount = data
+        console.log(this.ReqCount)
       },
       error: (err) => {
         console.log(err)

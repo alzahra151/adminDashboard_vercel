@@ -20,7 +20,12 @@ export class PriceOfferReqService {
     return localStorage.getItem('AdminToken')
   }
   getAllReq(limit: any, page: any) {
-    return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/completed-requests?limit=${limit}&page=${page}`, this.options)
+    return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/completed-requests?limit=${limit}&page=${page}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': 'token ' + this.token
+      }),
+    })
   }
   updateReq(id: any, data: any) {
     return this.httpClient.patch(`${environment.apiUrl}/PriceOfferReq/${id}`, data)
@@ -46,8 +51,8 @@ export class PriceOfferReqService {
   getNewReqCount() {
     return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/NewReqCount`)
   }
-  getAcceptedReq() {
-    return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/salesMangersApprovedReq`)
+  getAcceptedReq(limit: any, page: any) {
+    return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/salesMangersApprovedReq?limit=${limit}&page=${page}`)
   }
   getRejectedReq() {
     return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/rejected-req`)
@@ -89,5 +94,8 @@ export class PriceOfferReqService {
   }
   deleteDevice(id: any) {
     return this.httpClient.delete(`${environment.apiUrl}/Device/${id}`)
+  }
+  approveReq(id: any) {
+    return this.httpClient.patch(`${environment.apiUrl}/PriceOfferReq/approve-req/${id}`, {})
   }
 }
