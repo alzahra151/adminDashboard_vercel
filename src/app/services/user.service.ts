@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  options = {}
+  imageSubject = new BehaviorSubject<any>(null);
   constructor(private httpClient: HttpClient) {
-    this.options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': 'token ' + this.token
-      }),
-    }
+    this.imageSubject.next(localStorage.getItem('Image'));
   }
 
   get token() {
@@ -27,7 +23,7 @@ export class UserService {
   getUser() {
     return this.httpClient.get(`${environment.apiUrl}/Admin/get-user`, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'encType': "multipart/form-data",
         'token': 'token ' + this.token
       }),
     })

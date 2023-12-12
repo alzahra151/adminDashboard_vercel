@@ -11,7 +11,13 @@ export class NavBarComponent implements OnInit {
   user: any
   constructor(private userService: UserService) { }
   ngOnInit(): void {
-    this.userImage = localStorage.getItem("Image")
+    // this.userImage = localStorage.getItem("Image")
+    this.userService.imageSubject.subscribe({
+      next: (data) => {
+        console.log(data)
+        this.userImage = localStorage.getItem("AdminImag")
+      }
+    })
     this.getUser()
   }
 

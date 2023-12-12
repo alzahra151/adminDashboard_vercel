@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
         console.log(this.userData.AccessToken)
         localStorage.setItem('AdminToken', this.userData.AccessToken)
         localStorage.setItem('AdminRole', this.userData.StoredRepresent.Role)
+        localStorage.setItem('AdminImag', this.userData.StoredRepresent.Image)
+
         // localStorage.setItem('userId', this.userData.result.StoredRepresent.id)
         if (this.userData.StoredRepresent.Role == 'customerService') {
           this.router.navigate(['/customer-service'])

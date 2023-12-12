@@ -16,6 +16,7 @@ export class EditeUserComponent implements OnInit {
   ImageFile: any
   message: any;
   imageUrl: any | ArrayBuffer | null;
+  userImg: any;
   constructor(private user: UserService, private formBilder: FormBuilder, private router: Router) {
     this.registerForm = formBilder.group({
       FullName: ['', [Validators.required, Validators.pattern("^[a-zA-Z]{3,}( {1,2}[a-zA-Z]{3,}){1,}$")]],
@@ -47,20 +48,7 @@ export class EditeUserComponent implements OnInit {
     return this.registerForm.get("Country")
   }
 
-  register() {
-    let user = this.registerForm.value
-    console.log(user)
-    this.user.Register(user).subscribe({
-      next: (data) => {
-        this.registerForm.reset()
-        // this.router.navigate(['/'])
-      },
-      error: (err) => {
-        console.log(err)
-      }
 
-    })
-  }
 
   getUser() {
     const formValues: any = {};
@@ -101,6 +89,9 @@ export class EditeUserComponent implements OnInit {
         console.log(data)
         this.registerForm.reset()
         // this.router.navigate(['/'])
+        this.userImg = data
+        localStorage.setItem('AdminImag', this.userImg.Image)
+        this.user.imageSubject.next(localStorage.getItem('AdminImag'))
       },
       error: (err) => {
         console.log(err)

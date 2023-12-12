@@ -45,7 +45,7 @@ export class PriceOfferReqService {
   getOfferByID(id: any) {
     return this.httpClient.get(`${environment.apiUrl}/PriceOffer/${id}`)
   }
-  addNewService(data: AnalyserOptions) {
+  addNewService(data: any) {
     return this.httpClient.post(`${environment.apiUrl}/Service`, data)
   }
   getNewReqCount() {
@@ -67,7 +67,11 @@ export class PriceOfferReqService {
     return this.httpClient.get(`${environment.apiUrl}/Service/GetServices`)
   }
   getCommentedReqs() {
-    return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/commented-reqs`, this.options)
+    return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/commented-reqs`, {
+      headers: {
+        "Accept": "application/pdf"
+      }, responseType: 'blob'
+    })
   }
   getServicebyId(id: any) {
     return this.httpClient.get(`${environment.apiUrl}/Service/get-service/${id}`)
