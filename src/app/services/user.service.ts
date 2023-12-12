@@ -25,7 +25,12 @@ export class UserService {
     return this.httpClient.post(`${environment.apiUrl}/Admin`, body)
   }
   getUser() {
-    return this.httpClient.get(`${environment.apiUrl}/Admin/get-user`, this.options)
+    return this.httpClient.get(`${environment.apiUrl}/Admin/get-user`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': 'token ' + this.token
+      }),
+    })
   }
   updateUser(data: any) {
     return this.httpClient.patch(`${environment.apiUrl}/Admin/update-user`, data, {

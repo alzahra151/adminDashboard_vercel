@@ -76,7 +76,7 @@ export class EditeUserComponent implements OnInit {
           }
           // console.log(formValues)
         }
-        this.registerForm.setValue(formValues)
+        this.registerForm.patchValue(formValues)
       },
       error: (err) => {
         console.log(err)
