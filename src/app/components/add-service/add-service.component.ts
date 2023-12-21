@@ -15,15 +15,13 @@ export class AddServiceComponent implements OnInit {
   service: any
   IsAddMode: boolean = false
   loading: boolean = true
+  countries: any = []
+  selectedCountry: any
   constructor(private reqService: PriceOfferReqService, private formBilder: FormBuilder, private route: ActivatedRoute) {
     this.serviceForm = formBilder.group({
       Name: ['', [Validators.required]],
       Details: formBilder.array([formBilder.control('')]),
       Devices: formBilder.array([this.deviceDetails()]),
-      // Maintenance: formBilder.group({
-      //   description: ['',],
-      //   price: ['',]
-      // })
     })
   }
   get Name() {
@@ -38,21 +36,25 @@ export class AddServiceComponent implements OnInit {
   get Maintenance() {
     return this.serviceForm.get("Maintenance");
   }
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.serviceID = params['id']
-      this.IsAddMode = !this.serviceID
-      console.log(this.IsAddMode)
-      console.log(this.serviceID)
-      this.getServiceById(this.serviceID)
+  Price(index: any): FormArray {
+    return this.Devices.at(index).get(`Price`) as FormArray;
+  }
+  ngOnInit() {
+    this.getCounries()
 
-    })
+
     this.getServices()
   }
   deviceDetails(): FormGroup {
     return this.formBilder.group({
       Title: ['', [Validators.required]],
-      Price: [, [Validators.required]]
+      Price: this.formBilder.array([])
+    })
+  }
+  priceDetails(): FormGroup {
+    return this.formBilder.group({
+      country: ['', [Validators.required]],
+      price: [, [Validators.required]]
     })
   }
   addServiceDetail() {
@@ -60,33 +62,34 @@ export class AddServiceComponent implements OnInit {
   }
   addServiceDevice() {
     this.Devices.push(this.deviceDetails());
+    this.addPriceInp(this.Devices.length - 1)
+  }
+  addPriceInp(serviceIndex: number) {
+    // this.Price(serviceIndex).push(this.priceDetails());
+    this.countries.forEach((element: any) => {
+      this.Price(serviceIndex).push(this.formBilder.group({
+        country: [element._id, [Validators.required]],
+        price: [, [Validators.required]]
+      }));
+
+    });
   }
   AddService() {
-    if (this.IsAddMode) {
-      this.reqService.addNewService(this.serviceForm.value).subscribe({
-        next: (data) => {
-          // this.getServices()
-          console.log(data)
-          this.serviceForm.reset()
-        },
-        error: (err) => {
-          console.log(err.message)
-        }
-      })
-    } else {
-      this.reqService.editeService(this.serviceID, this.serviceForm.value).subscribe({
-        next: (data) => {
-          // this.getServices()
-          console.log(data)
-          this.serviceForm.reset()
-        },
-        error: (err) => {
-          console.log(err.message)
-        }
-      })
-    }
+
+    this.reqService.addNewService(this.serviceForm.value).subscribe({
+      next: (data) => {
+        // this.getServices()
+        console.log(data)
+        this.serviceForm.reset()
+      },
+      error: (err) => {
+        console.log(err.message)
+      }
+    })
 
   }
+
+
   getServices() {
     this.reqService.getServices().subscribe({
       next: (data) => {
@@ -149,5 +152,17 @@ export class AddServiceComponent implements OnInit {
     this.service.Devices = []
     this.serviceForm.patchValue(this.service);
     // this.serviceForm.patchValue(this.service.Devices[0])
+  }
+  getCounries() {
+    this.reqService.getCountries().subscribe({
+      next: (data) => {
+        this.countries = data
+        console.log(this.countries)
+        this.addPriceInp(0)
+      },
+      error: (err) => {
+        console.log(err.message)
+      }
+    })
   }
 }

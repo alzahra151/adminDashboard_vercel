@@ -102,4 +102,7 @@ export class PriceOfferReqService {
   approveReq(id: any) {
     return this.httpClient.patch(`${environment.apiUrl}/PriceOfferReq/approve-req/${id}`, {})
   }
+  getCountries() {
+    return this.httpClient.get(`${environment.apiUrl}/Country/countries`)
+  }
 }

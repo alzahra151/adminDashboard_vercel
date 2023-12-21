@@ -48,33 +48,51 @@
 
                                 <h2> <i class="pi pi-desktop" style="color: blue;"></i> Add Devices</h2>
                             </div>
-                            <div formArrayName="Devices">
-                                <div [formGroupName]="j" class="grid grid-cols-1  lg:grid-cols-2 items-center mt-5 "
+                            <div formArrayName="Devices" class="p-3">
+                                <div [formGroupName]="j" class=" items-center mt-5 border border-gray-500 bg-gray-50 "
                                     *ngFor="let mob of Devices.controls;let j=index">
+                                    <div class="flex justify-center">
+                                        <span class="w-full p-float-label  m-3 deviceInput">
 
-                                    <span class="p-float-label grid-cols-1 m-3">
+                                            <input class=" w-full" pInputText name="Device{{j+1}}" id="usrMobile{{j+1}}"
+                                                formControlName="Title"
+                                                [ngClass]="Name?.errors?.['required']?'ng-invalid ng-dirty':''" />
+                                            <label htmlFor="devices"><i class="pi pi-pencil"></i> Add Device
+                                                Name</label>
+                                        </span>
+                                    </div>
+                                    <div formArrayName="Price">
+                                        <div *ngFor=" let skill of Price(j).controls; let priceIndex = index"
+                                            [formGroupName]="priceIndex" class="grid grid-cols-1  lg:grid-cols-2">
+                                            <!-- <label for="country">select country</label> -->
+                                            <span class="p-float-label grid-cols-1 m-3">
 
-                                        <input class="w-full " pInputText name="Device{{j+1}}" id="usrMobile{{j+1}}"
-                                            formControlName="Title"
-                                            [ngClass]="Name?.errors?.['required']?'ng-invalid ng-dirty':''" />
-                                        <label htmlFor="devices"><i class="pi pi-pencil"></i> Add Device Name</label>
-                                    </span>
-                                    <span class="p-float-label grid-cols-1 m-3">
 
-                                        <input type="number" class="w-full " pInputText name="Device{{j+1}}"
-                                            id="usrMobile{{j+1}}" formControlName="Price"
-                                            [ngClass]="Name?.errors?.['required']?'ng-invalid ng-dirty':'ng-valid'" />
-                                        <label htmlFor="devices"><i class="pi pi-pound"></i> Add Price</label>
-                                    </span>
+                                                <p-dropdown class="w-full " [options]="countries" id="country"
+                                                    optionLabel="name" formControlName="country"
+                                                    [autoDisplayFirst]="false" placeholder="select country"
+                                                    optionValue="_id"></p-dropdown>
+                                            </span>
+                                            <span class="p-float-label grid-cols-1 m-3">
+
+                                                <input type="number" class="w-full " pInputText name="Device{{j+1}}"
+                                                    id="usrMobile{{j+1}}" formControlName="price"
+                                                    [ngClass]="Name?.errors?.['required']?'ng-invalid ng-dirty':'ng-valid'" />
+                                                <label htmlFor="devices"><i class="pi pi-pound"></i> Add Price</label>
+                                            </span>
+                                        </div>
+                                        <!-- <button (click)="addPriceInp(j)">add </button> -->
+                                    </div>
+                                </div>
+                                <div class="flex justify-center m-3">
+                                    <button (click)="addServiceDevice()"
+                                        class="flex-shrink-0  w-full  bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+                                        type="button">
+                                        + Add More Devices
+                                    </button>
                                 </div>
                             </div>
-                            <div class="flex justify-center m-3">
-                                <button (click)="addServiceDevice()"
-                                    class="flex-shrink-0  w-full  bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-                                    type="button">
-                                    + Add More Devices
-                                </button>
-                            </div>
+
                         </div>
                         <!-- <div class="col-span-1  p-0  m-2">
                             <div class="flex justify-start">
@@ -105,7 +123,7 @@
                             type="button">
                             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
 
-                            Add Service
+                            Save
                         </button>
                     </div>
                 </div>

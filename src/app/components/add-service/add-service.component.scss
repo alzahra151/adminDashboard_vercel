@@ -18,3 +18,15 @@
 .input{
     border-radius: 0%;
 }
+
+::ng-deep .p-dropdown {
+    width: 100%;
+}
+::ng-deep .p-float-label .p-placeholder{
+    opacity: 1;
+}
+
+::ng-deep .deviceInput .p-inputtext{
+border-radius: 0%;
+// border: 1px solid blue;
+}

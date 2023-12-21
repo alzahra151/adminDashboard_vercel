@@ -24,33 +24,22 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Name</th>
+                            <th>country</th>
                             <th>Price</th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-device>
+                    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
                         <tr>
-                            <td>{{device.Title}}</td>
-                            <td>{{device.Price | currency:"EGP"}}</td>
+                            <td [attr.rowspan]="rowData.Price.length+1 || 1">{{rowData.Title}}</td>
                         </tr>
-
+                        <tr *ngFor="let nestedItem of rowData.Price">
+                            <td>{{nestedItem.country?.name}}</td>
+                            <td>{{nestedItem.price | currency:nestedItem.country?.currency}}</td>
+                        </tr>
                     </ng-template>
-                    <!-- <ng-template pTemplate="summary"> Footer </ng-template> -->
+
                 </p-table>
             </div>
-            <!-- <div class="p-5">
-                <div class="flex mb-2">
-                    <img class="w-16" src="../../../assets/4.png" />
-                    <h2 class="mt-2">Maintenance And Updates</h2>
-                </div>
-                <div class="flex w-full">
-                    <div class="border border-gray-300 p-2 w-full">
-                        {{service?.Maintenance?.description }}
-                    </div>
-                    <div class="border border-gray-300 p-2 w-full">
-                        {{service?.Maintenance?.price }}
-                    </div>
-                </div>
-            </div> -->
         </div>
 
     </div>

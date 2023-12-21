@@ -58,7 +58,8 @@
 
                                 </div>
                                 <div class=" items-center text-base font-semibold text-gray-900 dark:text-white">
-                                    اجمالي عرض السعر:<div></div> {{offer.PriceOffer.TotalPrice | currency: 'EGP'}}
+                                    اجمالي عرض السعر:<div></div> {{offer.PriceOffer.TotalPrice | currency:
+                                    offer?.Country?.currency}}
                                 </div>
 
 
