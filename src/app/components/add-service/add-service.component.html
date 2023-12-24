@@ -62,14 +62,14 @@
                                         </span>
                                     </div>
                                     <div formArrayName="Price">
-                                        <div *ngFor=" let skill of Price(j).controls; let priceIndex = index"
+                                        <div *ngFor=" let skill of Price(j).controls.slice(0,3); let priceIndex = index"
                                             [formGroupName]="priceIndex" class="grid grid-cols-1  lg:grid-cols-2">
                                             <!-- <label for="country">select country</label> -->
                                             <span class="p-float-label grid-cols-1 m-3">
 
 
-                                                <p-dropdown class="w-full " [options]="countries" id="country"
-                                                    optionLabel="name" formControlName="country"
+                                                <p-dropdown class="w-full " [options]="countries.slice(0,3)"
+                                                    id="country" optionLabel="name" formControlName="country"
                                                     [autoDisplayFirst]="false" placeholder="select country"
                                                     optionValue="_id"></p-dropdown>
                                             </span>

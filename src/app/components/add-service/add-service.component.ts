@@ -66,7 +66,7 @@ export class AddServiceComponent implements OnInit {
   }
   addPriceInp(serviceIndex: number) {
     // this.Price(serviceIndex).push(this.priceDetails());
-    this.countries.forEach((element: any) => {
+    this.countries.slice(0, 3).forEach((element: any) => {
       this.Price(serviceIndex).push(this.formBilder.group({
         country: [element._id, [Validators.required]],
         price: [, [Validators.required]]
