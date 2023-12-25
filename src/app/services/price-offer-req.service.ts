@@ -52,7 +52,7 @@ export class PriceOfferReqService {
     return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/NewReqCount`)
   }
   getAcceptedReq(limit: any, page: any) {
-    return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/salesMangersApprovedReq?limit=${limit}&page=${page}`)
+    return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/salesAllMangersApprovedReq?limit=${limit}&page=${page}`)
   }
   getRejectedReq() {
     return this.httpClient.get(`${environment.apiUrl}/PriceOfferReq/rejected-req`)
